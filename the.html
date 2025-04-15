@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The</title>
+    <link rel="stylesheet" href="the.css">
+</head>
+<body>
+   
+    <section>
+        <h2>Nos Délicieuses Offres</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img2/OIP.jpg" alt="Plat 1" class="image-default">
+                    <img src="img2/th.jpg" alt="Plat 1 Hover" class="image-hover">
+                </div>
+                <p>Thé vert au lait</p>
+                <p class="price">1200F</p>
+                <button class="btn"  data-name="Thé vert au lait"data-price="1200F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img2/lai.jpg" alt="Plat 2" class="image-default">
+                    <img src="img2/la.jpg" alt="Plat 2 Hover" class="image-hover">
+                </div>
+                <p>Thé au lait</p>
+                <p class="price">900F</p>
+                <button class="btn"  data-name="Thé au lait"data-price="900F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img/perle.jpg" alt="Plat 3" class="image-default">
+                    <img src="img2/per.jpg" alt="Plat 3 Hover" class="image-hover">
+                </div>
+                <p>Thé aux perles</p>
+                <p class="price">1200F</p>
+                <button class="btn"  data-name="Thé aux perles"data-price="1200F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img2/v.jpg" alt="Plat 4" class="image-default">
+                    <img src="img2/ver.jpg" alt="Plat 4 Hover" class="image-hover">
+                </div>
+                <p>Thé vert à la fraise</p>
+                <p class="price">1200F</p>
+                <button class="btn"  data-name="Thé vert à la fraise"data-price="1200F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img2/m.jpg" alt="Plat 5" class="image-default">
+                    <img src="img2/man.jpg" alt="Plat 5 Hover" class="image-hover">
+                </div>
+                <p>Thé à la mangue</p>
+                <p class="price">1000F</p>
+                <button class="btn"  data-name="Thé à la mangue"data-price="1000F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img2/men.jpg" alt="Plat 6" class="image-default">
+                    <img src="img2/ment.jpg" alt="Plat 6 Hover" class="image-hover">
+                </div>
+                <p>Thé à la menthe</p>
+                <p class="price">1100F</p>
+                <button class="btn"  data-name="Thé à la menthe"data-price="1100F">Commander</button>
+            </div>
+        </div>
+    </section>
+<a href="index.php">Retour à l'accueil</a>
+
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+        var isConnected = localStorage.getItem("isConnected");
+        let boutonsCommande = document.querySelectorAll(".btn");
+    
+        console.log("Nombre de boutons trouvés :", boutonsCommande.length); // Vérification
+    
+        boutonsCommande.forEach(function (bouton) {
+            bouton.addEventListener("click", function (event) {
+                // Vérifier si l'utilisateur est connecté
+                if (!isConnected) {
+                    event.preventDefault();
+                    alert("❌ Vous devez être connecté pour commander !");
+                    window.location.href = "connexion.php"; 
+                } else {
+                    alert("✅ Commande autorisée !");
+                   
+                    window.location.href="";
+                }
+    
+              
+                var name = bouton.getAttribute("data-name");
+                var price = bouton.getAttribute("data-price");
+    
+                if (name && price) {
+                    window.location.href = "commd.html?name=" + encodeURIComponent(name) + "&price=" + encodeURIComponent(price);
+                } else {
+                    alert("Erreur : Informations du produit manquantes.");
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

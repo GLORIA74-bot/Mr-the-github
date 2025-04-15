@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="inscrire.css">
+    <script defer src="inscrire.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+</head>
+<body>
+
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Rejoignez-nous</h2>
+            <form id="registerForm" method="post" action="inscrire.php">
+                <div class="input-box">
+                    <input type="text" id="nom" required name="nom">
+                    <label>Nom</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="prenom" required name="prenom">
+                    <label>Prenom</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="number" id="age" min="1" required name="age">
+                    <label>Age</label>
+                  
+                </div>
+                <div class="input-box">
+                    <select id="sexe" required name="sexe">
+                        <option value="" disabled selected>Sexe</option>
+                        <option value="M">Homme</option>
+                        <option value="F">Femme</option>
+                    </select>
+                   
+                </div>
+                <div class="input-box">
+                    <input type="tel" id="telephone" required maxlength="8" name="telephone" pattern="[0-9]+" minlength="8">
+                    <label id="tel">Telephone</label>
+                    <i class="fas fa-phone" ></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="email"  required name="email">
+                    <label>Email</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="username" required name="username">
+                    <label>Nom d'utilisateur</label>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="passwor" maxlength="30" required name="passwor">
+                    <label>Mot de passe</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn"> <a href="" class="aa">S'inscrire</a></button>
+                <div class="bottom-links">
+                    <a href="connecter.html">Déjà inscrit ? Connectez-vous</a>
+                    <a href="index.php">Retour à l'accueil</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+    const phoneInput = document.querySelector("#telephone");
+
+    const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "fr",
+        preferredCountries: ["fr", "us", "ca", "gb"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+
+    // Attendre que la liste des pays soit générée puis forcer la couleur en noir
+    setTimeout(() => {
+        let countryList = document.querySelector(".iti__country-list");
+
+        if (countryList) {
+            countryList.style.backgroundColor = "white"; // Fond blanc
+            
+            let countries = countryList.querySelectorAll(".iti__country");
+
+            countries.forEach(country => {
+                country.style.color = "black"; // Texte noir
+                country.style.fontWeight = "bold"; // Texte plus visible
+
+                // Appliquer aussi au survol
+                country.addEventListener("mouseenter", function () {
+                    this.style.backgroundColor = "#f0f0f0"; // Gris clair au survol
+                });
+
+                country.addEventListener("mouseleave", function () {
+                    this.style.backgroundColor = "white"; // Rétablir le fond blanc
+                });
+            });
+        }
+    }, 500); // Laisser un petit délai pour que la liste soit bien générée
+});
+       
+    </script>
+</body>
+</html>

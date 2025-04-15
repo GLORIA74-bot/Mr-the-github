@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Dynamique</title>
+    <link rel="stylesheet" href="the.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <!-- Menu déroulant -->
+            <div class="menu">
+                <button class="menu-button"><i class="fa-solid fa-bars"></i> Menu</button>
+                <ul class="menu-list" id="menu">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Se connecter</a></li>
+                    <li><a href="#">S'inscrire</a></li>
+                </ul>
+            </div>
+            <!-- Barre de recherche -->
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        
+        <!-- Nom du site -->
+        <h1 class="site-title">Mon Site</h1>
+        
+        <!-- Connexion et panier -->
+        <div class="actions">
+            <button class="login-button"><i class="fa-solid fa-user"></i> Se connecter</button>
+            <button class="cart-button"><i class="fa-solid fa-shopping-cart"></i> Panier</button>
+            <span class="cart-count">0</span>
+        </div>
+    </div>
+</header>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let cartCount = 0;
+            const cartCounter = document.querySelector(".cart-count");
+            const cartIcon = document.querySelector(".cart");
+        
+            // Animation au clic sur le panier
+            cartIcon.addEventListener("click", () => {
+                cartCount++;
+                cartCounter.textContent = cartCount;
+                cartCounter.style.background = "green"; // Effet visuel rapide
+                setTimeout(() => {
+                    cartCounter.style.background = "red"; // Retour à la normale
+                }, 300);
+            });
+        });
+
+    </script>
+
+        
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const menu = document.querySelector(".menu");
+    const menuItems = document.querySelector(".menu-list");
+
+    menu.addEventListener("mouseenter", function() {
+        menuItems.style.display = "block";
+    });
+
+    menu.addEventListener("mouseleave", function() {
+        // Ajouter un délai avant de masquer le menu
+        setTimeout(function() {
+            menuItems.style.display = "none";
+        }, 0); // Délai en millisecondes
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoothies</title>
+    <link rel="stylesheet" href="smoothie.css">
+</head>
+<body>
+   
+    <section>
+        <h2>Nos Délicieuses Offres</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/f.jpg" alt="Plat 1" class="image-default">
+                    <img src="img3/fr.jpg" alt="Plat 1 Hover" class="image-hover">
+                </div>
+                <p>Smoothie à la fraise</p>
+                <p class="price">1200F</p>
+                <button class="btn"  data-name="Smoothie à la fraise"data-price="1200F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/bn.jpg" alt="Plat 2" class="image-default">
+                    <img src="img3/bnn.jpg" alt="Plat 2 Hover" class="image-hover">
+                </div>
+                <p>Smoothie à la banane/p>
+                <p class="price">1100F</p>
+                <button class="btn"  data-name="Smoothie à la papaye"data-price="1100F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/mang.jpg" alt="Plat 3" class="image-default">
+                    <img src="img3/mangu.jpg" alt="Plat 3 Hover" class="image-hover">
+                </div>
+                <p>Smoothie à la mangue</p>
+                <p class="price">1000F</p>
+                <button class="btn"  data-name="Smoothie à la mangue"data-price="1000F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/rg.jpg" alt="Plat 4" class="image-default">
+                    <img src="img3/ro.jpg" alt="Plat 4 Hover" class="image-hover">
+                </div>
+                <p>Smoothie aux fruits rouges</p>
+                <p class="price">1500F</p>
+                <button class="btn"  data-name="Smoothie aux fruits rouges"data-price="1500F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/p.jpg" alt="Plat 5" class="image-default">
+                    <img src="img3/pp.jpg" alt="Plat 5 Hover" class="image-hover">
+                </div>
+                <p>Smoothie à la papaye</p>
+                <p class="price">1000F</p>
+                <button class="btn"  data-name="Smoothie à la papaye"data-price="1000F">Commander</button>
+            </div>
+    
+            <div class="menu-item">
+                <div class="image-container">
+                    <img src="img3/av.jpg" alt="Plat 6" class="image-default">
+                    <img src="img3/OIP (2).jpg" alt="Plat 6 Hover" class="image-hover">
+                </div>
+                <p>Smoothie à l'avocat</p>
+                <p class="price">1200F</p>
+                <button class="btn"  data-name="Smoothie à l'avocat"data-price="1200F">Commander</button>
+            </div>
+        </div>
+    </section>
+<a href="index.php">Retour à l'accueil</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var isConnected = localStorage.getItem("isConnected");
+        let boutonsCommande = document.querySelectorAll(".btn");
+    
+        console.log("Nombre de boutons trouvés :", boutonsCommande.length); // Vérification
+    
+        boutonsCommande.forEach(function (bouton) {
+            bouton.addEventListener("click", function (event) {
+                // Vérifier si l'utilisateur est connecté
+                if (!isConnected) {
+                    event.preventDefault();
+                    alert("❌ Vous devez être connecté pour commander !");
+                    window.location.href = "connexion.php"; 
+                } else {
+                    alert("✅ Commande autorisée !");
+                   
+                    window.location.href="";
+                }
+    
+              
+                var name = bouton.getAttribute("data-name");
+                var price = bouton.getAttribute("data-price");
+    
+                if (name && price) {
+                    window.location.href = "commd.html?name=" + encodeURIComponent(name) + "&price=" + encodeURIComponent(price);
+                } else {
+                    alert("Erreur : Informations du produit manquantes.");
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

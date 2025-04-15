@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres d'Emploi</title>
+    <link rel="stylesheet" href="offre.css">
+    <link rel="stylesheet" href="envoyer_candidature.php">
+</head>
+<body>
+    <div class="container">
+        <h1>Nous Recrutons !</h1>
+        <p>Nous sommes à la recherche de talents pour rejoindre notre équipe. Consultez nos offres et postulez dès maintenant !</p>
+
+        <div class="job-offer">
+            <h2>Poste : Comptable</h2>
+            <p><strong>Type :</strong> CDI</p>
+            <p><strong>Lieu :</strong>AVEDJI non loin de l'école ESGIS</p>
+            <p><strong>Compétences :</strong> Outils bureautique, Maitrise de la comptabilité,Maitrise des logiciels comptables</p>
+            <p><strong>Description :</strong>Nous recherchons un(e) comptable rigoureux(se) et organisé. Vous serez en charge de la comptabilité et de la maintenance de nos chiffres d'affaires.</p>
+            <button class="apply-btn" onclick="openForm('Comptable')">Postuler</button>
+        </div>
+
+        <div class="job-offer">
+            <h2>Poste : Caissiere</h2>
+            <p><strong>Type :</strong>CDI</p>
+            <p><strong>Lieu :</strong>AVEDJI non loin de l'école ESGIS</p>
+            <p><strong>Compétences :</strong> Savoir faire les comptes,Rapidité et présision dans le traitement des paiements,Bonne maitrise des outils de caisse</p>
+            <p><strong>Description :</strong>Nous recherchons une caissiere rigoureuse et organisée pour gérer notre caisse. </p>
+            <button class="apply-btn" onclick="openForm('Caissiere')">Postuler</button>
+        </div>
+
+        <p class="contact">Pour plus d'informations, contactez-nous à <strong>senouablavigloria@gmail.com</strong></p>
+    </div>
+
+    <div class="form-container" id="form-container">
+        <form action="envoyer_candidature.php" method="POST" enctype="multipart/form-data">
+            <h2>Postuler pour <span id="poste-selectionne"></span></h2>
+            <input type="hidden" name="poste" id="poste" value="">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+            
+            <label>Email :</label>
+            <input type="email" name="email" required>
+            
+            <label>CV (PDF) :</label>
+            <input type="file" name="cv" accept=".pdf" required>
+            
+            <label>Photo :</label>
+            <input type="file" name="photo" accept="image/*" required>
+            
+            <button type="submit">Envoyer</button>
+            <button type="button" class="close-btn" onclick="closeForm()">Annuler</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm(poste) {
+            document.getElementById("poste-selectionne").innerText = poste;
+            document.getElementById("poste").value = poste;
+            document.getElementById("form-container").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("form-container").style.display = "none";
+        }
+    </script>
+</body>
+</html>

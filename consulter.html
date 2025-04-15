@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horaires d'Ouverture</title>
+    <link rel="stylesheet" href="consulter.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+   
+<div class="horaires-container">
+    <h2>Horaires d'Ouverture</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Jour</th>
+                <th>Ouverture</th>
+                <th>Fermeture</th>
+            </tr>
+        </thead>
+        <tbody id="horaires-table">
+            <tr><td>Lundi</td><td>08:00</td><td>20:00</td></tr>
+            <tr><td>Mardi</td><td>08:00</td><td>20:00</td></tr>
+            <tr><td>Mercredi</td><td>08:00</td><td>20:00</td></tr>
+            <tr><td>Jeudi</td><td>08:00</td><td>20:00</td></tr>
+            <tr><td>Vendredi</td><td>08:00</td><td>21:00</td></tr>
+            <tr><td>Samedi</td><td>10:00</td><td>21:00</td></tr>
+            <tr><td>Dimanche</td><td>Fermé</td><td>Fermé</td></tr>
+        </tbody>
+    </table> 
+    
+</div>
+<div id="aa"><a href="index.php" id="aa">Retour à l'accueil</a></div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi","Dimanche" ];
+        const aujourdHui = new Date().getDay(); // 0 = Dimanche, 1 = Lundi, etc.
+        const heures = new Date().getHours();
+        const lignes = document.querySelectorAll("#horaires-table  tr");
+
+    console.log("Aujourd'hui  : ", aujourdHui, jours[aujourdHui]); 
+        lignes[aujourdHui -1].classList.add("today");
+        // Effet d'apparition pour chaque ligne
+        lignes.forEach((ligne, index) => {
+            setTimeout(() => {
+                ligne.style.opacity = "1";
+                ligne.style.transform = "translateY(0)";
+            }, index * 200); 
+        });
+        const horaires = [
+            { ouverture: 8, fermeture: 20 }, // Lundi
+            { ouverture: 8, fermeture: 20 }, // Mardi
+            { ouverture: 8, fermeture: 20 }, // Mercredi
+            { ouverture: 8, fermeture: 20 }, // Jeudi
+            { ouverture: 8, fermeture: 21 }, // Vendredi
+            { ouverture: 10, fermeture: 21 }, // Samedi
+            { ouverture: 0, fermeture: 0 }  // Dimanche (fermé)
+        ];
+
+        let etatOuverture = "Fermé";
+        if (heures >= horaires[aujourdHui].ouverture && heures < horaires[aujourdHui].fermeture) {
+            etatOuverture = "Ouvert";
+        }
+        const messageOuverture = document.createElement("p");
+        messageOuverture.textContent = "Nous sommes actuellement : " + etatOuverture;
+        messageOuverture.style.fontSize = "20px";
+        messageOuverture.style.fontWeight = "bold";
+        messageOuverture.style.color = etatOuverture === "Ouvert" ? "lightgreen" : "red";
+        messageOuverture.style.marginTop = "10px";
+        document.querySelector(".horaires-container").appendChild(messageOuverture);
+    });
+</script>
+</body>
+
+</html>

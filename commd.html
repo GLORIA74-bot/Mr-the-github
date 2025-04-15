@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander</title>
+    <link rel="stylesheet" href="commd.css">
+    <link rel="stylesheet" href="cmmd.php">
+    <script defer src=""></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2 id="product-name">Nom du produit</h2>
+            <p id="product-price">Prix : 0 FCFA</p>
+            
+            <label for="quantity">Quantité :</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <p id="total-price"><strong> Total:</strong>0 FCFA</p>
+
+            <label for="whatsapp-number">Choisir un numéro WhatsApp :</label>
+            <select id="whatsapp-number">
+                <option value="22899882211">+22899882211</option>
+                <option value="22800000000">+22800000000 </option>
+                <option value="22800000000">+22800000000 </option>
+            </select>
+
+            <button id="send-whatsapp">Envoyer la commande</button>
+            <button id="add-to-cart">Ajouter au panier</button>
+        </div>
+        <a href="index.php" >Accueil</a>
+    </div>
+    
+   
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var params = new URLSearchParams(window.location.search);
+            var productName = params.get("name") || "Produit inconnu";
+            var productPrice = parseInt(params.get("price")) || 0;
+    
+            // Affichage des informations du produit
+            document.getElementById("product-name").textContent = productName;
+            document.getElementById("product-price").textContent = "Prix : " + productPrice + " FCFA";
+    
+            // Mise à jour dynamique du prix total
+            document.getElementById("quantity").addEventListener("input", function () {
+                var quantity = parseInt(this.value);
+                var total = productPrice * quantity;
+                document.getElementById("total-price").textContent = "Total : " + total + " FCFA";
+            });
+    
+            // Ajouter au panier
+            document.getElementById("add-to-cart").addEventListener("click", function () {
+                var quantity = parseInt(document.getElementById("quantity").value);
+                var total = productPrice * quantity;
+                var cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+                cart.push({ name: productName, price: productPrice, quantity: quantity, total: total });
+                localStorage.setItem("cart", JSON.stringify(cart));
+    
+                alert("Produit ajouté au panier !");
+            });
+       
+   
+            // Envoi sur WhatsApp
+            document.getElementById("send-whatsapp").addEventListener("click", function () {
+                var quantity = parseInt(document.getElementById("quantity").value);
+                var total = productPrice * quantity;
+                var whatsappNumber = document.getElementById("whatsapp-number").value;
+    var encodedMessage=encodeURIComponent(message);
+                if (quantity < 1) {
+                    alert("Veuillez entrer une quantité valide.");
+                    return;
+                }
+           var message = "Bonjour, je voudrais commander " + quantity + "  " + productName + " pour un total de " + total + " FCFA.";
+                var whatsappURL = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+                window.open(whatsappURL,"_blank");
+            });
+            console.log("URL WhatsApp générée:",waUrl)
+    if(newWindow){
+        console.log("whatsApp ouvert")
+    }else{
+        console.error("echec")
+        alert("veuillez")
+    }
+         
+        });
+    </script>
+ 
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr thé connexion</title>
+    <link rel="stylesheet" href="connecter.css">
+    <script defer src="connecter.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Connexion</h2>
+            <form action="connexion.php" method="post" id="loginForm">
+                <div class="input-box">
+                    <input type="text" id="username" required name="username">
+                    <label>Nom d'utilisateur</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" required name="password" >
+                    <label>Mot de passe</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="btn" > Se connecter</button>
+                <div class="bottom-links">
+                    <a href="recuper.html">Mot de passe oublié ?</a>
+                    <a href="inscrire.html">Créer un compte</a>
+                    <a href="index.php">Retour à l'accueil</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
